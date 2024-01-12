@@ -5,10 +5,4 @@ return {
     cmd = "IncRename",
     config = true,
   },
-  {
-    "numToStr/Comment.nvim",
-    config = function()
-      require("Comment").setup()
-    end,
-  },
 }
