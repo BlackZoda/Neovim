@@ -6,70 +6,36 @@ local opts = { noremap = true, silent = true }
 vim.g.mapleader = " "
 keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
--- shift selected lines
-keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Shift selected lines down" })
+keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Shift selected lines up" })
 
--- yank until end line (but no new line)
-keymap.set("n", "Y", "yg$")
+keymap.set("n", "Y", "yg$", { desc = "Yank to end of line" })
 
--- keep cursor in place when joining lines
-keymap.set("n", "J", "mzJ`z")
+keymap.set("n", "J", "mzJ`z", { desc = "Keep curor in place when joining lines" })
 
--- cursor stays in place during half page jumping
-keymap.set("n", "<C-u>", "<C-u>zz")
-keymap.set("n", "<C-d>", "<C-d>zz")
+keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Keeps cursor in place during half page up" })
+keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Keeps cursor in place during half page down" })
 
---vim cursor stay in place during search
-keymap.set("n", "n", "nzzzv")
-keymap.set("n", "N", "Nzzzv")
+keymap.set("n", "n", "nzzzv", { desc = "Keeps cursor in place during next find" })
+keymap.set("n", "N", "Nzzzv", { desc = "Keeps cursor in place during previous find" })
 
--- keep the copy reister intact when pasting
-keymap.set("x", "<leader>p", [["_dP]])
+keymap.set("x", "<leader>p", [["_dP]], { desc = "Keep the register intact when pasting" })
 
--- copy to system clip board
-keymap.set({ "n", "v" }, "<leader>y", [["+y]])
-keymap.set("n", "<leader>Y", [["+Y]])
+keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Copy to system clip board" })
+keymap.set("n", "<leader>Y", [["+Y]], { desc = "Copy until EOL to system clip board" })
 
-keymap.set({ "n", "v" }, "<leader>d", [["_d]])
+keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Find/replace all" })
 
-keymap.set("n", "Q", "<nop>")
-keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
-keymap.set("n", "<leader>f", vim.lsp.buf.format)
-
--- vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
--- vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
-keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
-keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
-
--- find/replace current word
-keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-
--- make executable
-keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
-
-keymap.set("n", "<leader><leader>", function()
-  vim.cmd("so")
-end)
+keymap.set("n", "<leader>xe", "<cmd>!chmod +x %<CR>", { desc = "Make exectable" })
 
 -- Increment/decrement
-keymap.set("n", "+", "<C-a>")
-keymap.set("n", "-", "<C-x>")
+-- keymap.set("n", "+", "<C-a>")
+-- keymap.set("n", "-", "<C-x>")
 
 -- New tab
-keymap.set("n", "te", ":tabedit")
-keymap.set("n", "<tab>", ":tabnext<Return>", opts)
-keymap.set("n", "<s-tab>", ":tabprev<Return>", opts)
-
--- Split window
-keymap.set("n", "ss", ":split<Return>", opts)
-keymap.set("n", "sv", ":vsplit<Return>", opts)
-
--- Move window
-keymap.set("n", "sh", "<C-w>h")
-keymap.set("n", "sk", "<C-w>k")
-keymap.set("n", "sj", "<C-w>j")
-keymap.set("n", "sl", "<C-w>l")
+keymap.set("n", "<leader><tab>e", ":tabedit", { desc = "tab edit" })
+keymap.set("n", "<leader><tab>n", ":tabnext<Return>", { desc = "nest tab" })
+keymap.set("n", "<leader><tab>p", ":tabprev<Return>", { desc = "previous tab" })
 
 local cmp = require("cmp")
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
