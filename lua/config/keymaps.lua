@@ -1,6 +1,7 @@
 --{} Keymap{}s are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lu
 local keymap = vim.keymap
+local wk = require("which-key")
 local opts = { noremap = true, silent = true }
 
 -- General
@@ -14,6 +15,17 @@ local builtin = require("telescope.builtin")
 local mark = require("harpoon.mark")
 local ui = require("harpoon.ui")
 
+-- which-key
+wk.register({
+  ["<leader>p"] = {
+    name = "+custom search",
+  },
+  ["<øeader>ø"] = {
+    name = "+harpoon register",
+  },
+})
+
+-- custom search
 keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "Exit to file menu" })
 
 keymap.set("n", "<leader>ps", function()
@@ -22,6 +34,7 @@ end, { desc = "Fuzzy grep search" })
 
 keymap.set("n", "<leader>pf", builtin.find_files, { desc = "Fuzzy find file" })
 
+-- harpoon
 keymap.set("n", "<leader>a", mark.add_file, { desc = "Harpoon: Add file" })
 keymap.set("n", "<C-a>", ui.toggle_quick_menu, { desc = "Harppon: Toggle menu" })
 
@@ -100,9 +113,9 @@ cmp.setup({
     documentation = cmp.config.window.bordered(),
   },
   -- snippets
-  snippet = {
+  --[[ snippet = {
     expand = function(args)
       require("lunasnip").lsp_expand(args.body)
     end,
-  },
+  }, ]]
 })
