@@ -10,8 +10,36 @@ keymap.set("n", "<C-?>", "<cmd>resize +2<cr>", { desc = "Increase window height"
 keymap.set("n", "<C-=>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
 --
 
-vim.g.mapleader = " "
-keymap.set("n", "<leader>pv", vim.cmd.Ex)
+local builtin = require("telescope.builtin")
+local mark = require("harpoon.mark")
+local ui = require("harpoon.ui")
+
+keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "Exit to file menu" })
+
+keymap.set("n", "<leader>ps", function()
+  builtin.grep_string({ search = vim.fn.input("Grep > ") })
+end, { desc = "Fuzzy grep search" })
+
+keymap.set("n", "<leader>pf", builtin.find_files, { desc = "Fuzzy find file" })
+
+keymap.set("n", "<leader>a", mark.add_file, { desc = "Harpoon: Add file" })
+keymap.set("n", "<C-a>", ui.toggle_quick_menu, { desc = "Harppon: Toggle menu" })
+
+keymap.set("n", "<leader>ø1", function()
+  ui.nav_file(1)
+end, { desc = "Harpoon: Goto file 1" })
+
+keymap.set("n", "<leader>ø2", function()
+  ui.nav_file(2)
+end, { desc = "Harpoon: Goto file 2" })
+
+keymap.set("n", "<leader>ø3", function()
+  ui.nav_file(3)
+end, { desc = "Harpoon: Goto file 3" })
+
+keymap.set("n", "<leader>ø4", function()
+  ui.nav_file(4)
+end, { desc = "Harpoon: Goto file 3" })
 
 -- Move lines
 keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Shift selected lines down", silent = true })
@@ -32,6 +60,9 @@ keymap.set("n", "<leader>Y", [["+Y]], { desc = "Copy until EOL to system clip bo
 
 -- Find / Replace
 keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Find/replace all" })
+
+-- Git
+keymap.set("n", "<leader>gi", vim.cmd.Git)
 
 -- File management
 keymap.set("n", "<leader>xe", "<cmd>!chmod +x %<CR>", { desc = "Make exectable" })
