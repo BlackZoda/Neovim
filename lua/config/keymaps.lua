@@ -20,7 +20,7 @@ wk.register({
   ["<leader>p"] = {
     name = "+custom search",
   },
-  ["<øeader>ø"] = {
+  ["<leader>ø"] = {
     name = "+harpoon register",
   },
 })
