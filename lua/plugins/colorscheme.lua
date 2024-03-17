@@ -9,7 +9,7 @@ return {
         mocha = {
           -- this 16 colors are changed to onedark
           base = "#111133",
-          mantle = "#222255",
+          mantle = "#222244",
           surface0 = "#3e4451",
           surface1 = "#545862",
           surface2 = "#565c64",
