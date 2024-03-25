@@ -43,4 +43,5 @@ return {
       vim.treesitter.language.register("markdown", "mdx")
     end,
   },
+  { "rafamadriz/friendly-snippets" },
 }
