@@ -89,6 +89,23 @@ keymap.set("n", "<leader><tab>e", ":tabedit", { desc = "tab edit" })
 keymap.set("n", "<leader><tab>n", ":tabnext<Return>", { desc = "nest tab" })
 keymap.set("n", "<leader><tab>p", ":tabprev<Return>", { desc = "previous tab" })
 
+-- Codeium
+keymap.set("i", "<Tab>", function()
+  return vim.fn["codeium#Accept"]()
+end, { expr = true, silent = true })
+keymap.set("i", "<c-+>", function()
+  return vim.fn["codeium#CycleCompletions"](1)
+end, { expr = true, silent = true })
+keymap.set("i", "<c-0>", function()
+  return vim.fn["codeium#CycleCompletions"](-1)
+end, { expr = true, silent = true })
+keymap.set("i", "<c-x>", function()
+  return vim.fn["codeium#Clear"]()
+end, { expr = true, silent = true })
+keymap.set("i", "<c-c>", function()
+  return vim.fn["codeium#Chat"]()
+end, { expr = true, silent = true })
+
 -- nvim-cmp bindings
 local cmp = require("cmp")
 local cmp_select = { behavior = cmp.SelectBehavior.Select }

@@ -1,8 +1,7 @@
 -- Incremental rename
 return {
   {
-    "smjonas/inc-rename.nvim",
-    cmd = "IncRename",
-    config = true,
+    "Exafunction/codeium.vim",
+    event = "BufEnter",
   },
 }
