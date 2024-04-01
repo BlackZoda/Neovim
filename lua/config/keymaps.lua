@@ -93,16 +93,20 @@ keymap.set("n", "<leader><tab>p", ":tabprev<Return>", { desc = "previous tab" })
 keymap.set("i", "<Tab>", function()
   return vim.fn["codeium#Accept"]()
 end, { expr = true, silent = true })
-keymap.set("i", "<c-+>", function()
+
+keymap.set("i", "<C-f>", function()
   return vim.fn["codeium#CycleCompletions"](1)
 end, { expr = true, silent = true })
-keymap.set("i", "<c-0>", function()
+
+keymap.set("i", "<C-d>", function()
   return vim.fn["codeium#CycleCompletions"](-1)
 end, { expr = true, silent = true })
-keymap.set("i", "<c-x>", function()
+
+keymap.set("i", "<M-x>", function()
   return vim.fn["codeium#Clear"]()
 end, { expr = true, silent = true })
-keymap.set("i", "<c-c>", function()
+
+keymap.set("i", "<C-c>", function()
   return vim.fn["codeium#Chat"]()
 end, { expr = true, silent = true })
 
