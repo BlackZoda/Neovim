@@ -90,7 +90,7 @@ keymap.set("n", "<leader><tab>n", ":tabnext<Return>", { desc = "nest tab" })
 keymap.set("n", "<leader><tab>p", ":tabprev<Return>", { desc = "previous tab" })
 
 -- Codeium
-keymap.set("i", "<Tab>", function()
+keymap.set("i", "<C-g>", function()
   return vim.fn["codeium#Accept"]()
 end, { expr = true, silent = true })
 
@@ -102,7 +102,7 @@ keymap.set("i", "<C-d>", function()
   return vim.fn["codeium#CycleCompletions"](-1)
 end, { expr = true, silent = true })
 
-keymap.set("i", "<M-x>", function()
+keymap.set("i", "<C-x>", function()
   return vim.fn["codeium#Clear"]()
 end, { expr = true, silent = true })
 
